@@ -4,13 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "GameFramework/Character.h"
 #include "PlayerPawn.generated.h"
 
 class USpringArmComponent;
 class UCameraComponent;
 
 UCLASS()
-class FPSGAMEPROJECT_API APlayerPawn : public APawn
+class FPSGAMEPROJECT_API APlayerPawn : public ACharacter
 {
 	GENERATED_BODY()
 
@@ -24,13 +25,25 @@ public:
 	UCameraComponent* CameraComp;
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
 	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	float NormalSpeed;
+	float SprintSpeedMutiltiplier;
+	float SprintSpeed;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	UFUNCTION()
+	void Move(const FInputActionValue& value);
+	UFUNCTION()
+	void StartJump(const FInputActionValue& value);
+	UFUNCTION()
+	void StopJump(const FInputActionValue& value);
+	UFUNCTION()
+	void Look(const FInputActionValue& value);
+	UFUNCTION()
+	void StartSprint(const FInputActionValue& value);
+	UFUNCTION()
+	void StopSprint(const FInputActionValue& value);
 
 };
