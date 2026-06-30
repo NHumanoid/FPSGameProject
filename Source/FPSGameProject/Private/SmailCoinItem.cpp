@@ -9,5 +9,5 @@ ASmailCoinItem::ASmailCoinItem()
 
 void ASmailCoinItem::ActivateItem(AActor* Activator)
 {
-	Destroy();
+	Super::ActivateItem(Activator);
 }

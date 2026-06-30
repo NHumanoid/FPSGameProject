@@ -19,8 +19,18 @@ public:
 	ABaseItem();
 
 protected:
-	virtual void OnItemOverlap(AActor* OverlapActor) override; //아이템을 먹으면(충돌) 실행하는 순수가상함수
-	virtual void OnItemEndOverlap(AActor* OverlapActor)  override; //아이템을 벋어 났을 떄에 실행하는 순수가상함수
+	virtual void OnItemOverlap(
+		UPrimitiveComponent* OverLappedComp,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex,
+		bool bFromSweep,
+		const FHitResult& SweepResult) override; //아이템을 먹으면(충돌) 실행하는 순수가상함수
+	virtual void OnItemEndOverlap(
+		UPrimitiveComponent* OverLappedComp,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex) override; //아이템을 벋어 났을 떄에 실행하는 순수가상함수
 	virtual void ActivateItem(AActor* Activator) override;
 	virtual FName GetItemType() const override;
 	

@@ -5,6 +5,19 @@
 
 ACoinItem::ACoinItem()
 {
-	
+	PointValue = 0;
+	ItemType = "DefaultCoin";
+}
+
+void ACoinItem::ActivateItem(AActor* Activator)
+{
+	if (Activator && Activator->ActorHasTag("Player"))
+	{
+		GEngine->AddOnScreenDebugMessage(-1,
+			2.0f,
+			FColor::Yellow,
+			FString::Printf(TEXT("Player Get %d points!!!"),PointValue));
+		Destroy();
+	}
 }
 

@@ -22,8 +22,19 @@ class FPSGAMEPROJECT_API IItemInterface
 	
 public:
 	
-	virtual void OnItemOverlap(AActor* OverlapActor) = 0; //아이템을 먹으면(충돌) 실행하는 순수가상함수
-	virtual void OnItemEndOverlap(AActor* OverlapActor) = 0; //아이템을 벋어 났을 떄에 실행하는 순수가상함수
+	UFUNCTION()
+	virtual void OnItemOverlap(
+		UPrimitiveComponent* OverLappedComp,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex,
+		bool bFromSweep,
+		const FHitResult& SweepResult) = 0; //아이템을 먹으면(충돌) 실행하는 순수가상함수
+	virtual void OnItemEndOverlap(
+		UPrimitiveComponent* OverLappedComp,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex) = 0; //아이템을 벋어 났을 떄에 실행하는 순수가상함수
 	virtual void ActivateItem(AActor* Activator) = 0;
 	virtual FName GetItemType() const = 0;
 	//지뢰 - 장애물, 코인 - 아이템,힐링

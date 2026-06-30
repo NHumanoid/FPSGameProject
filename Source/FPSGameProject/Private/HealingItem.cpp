@@ -2,6 +2,7 @@
 
 
 #include "HealingItem.h"
+#include "PlayerPawn.h"
 
 AHealingItem::AHealingItem()
 {
@@ -11,6 +12,13 @@ AHealingItem::AHealingItem()
 
 void AHealingItem::ActivateItem(AActor* Activator)
 {
-	Destroy();
+	if (Activator && Activator->ActorHasTag("Player"))
+	{
+		if(APlayerPawn* Playercharacter = Cast<APlayerPawn>(Activator))
+		{
+			Playercharacter->AddHealth(HealAmount);
+		}
+		DestroyItem();
+	}
 }
 
